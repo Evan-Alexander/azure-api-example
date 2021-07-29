@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Vanilla JavaScript App</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <main>
-      <h1>Vanilla JavaScript App</h1>
-      <p>Loading content from the API: <b id="message"></b></b></p>
+    <h1>Vanilla JavaScript App</h1>
+    <p>Loading content from the API: <b id="name">...</b></p>
     </main>
-  </body>
 
-  <script>
-    (async function () {
-      let response = await fetch(`api/message`);
-      let message = await response.json();
+    <script>
+    (async function() {
+        const { text } = await( await fetch(`/api/message`)).json();
+        console.log(text);
+        document.querySelector('#name').textContent = text;
+    }())
+    </script>
+</body>
 
-      document.querySelector("#message").innerHTML = message.text
-    })();
-  </script>
 </html>
